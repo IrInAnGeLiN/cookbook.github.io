@@ -1,0 +1,642 @@
+/* General Styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.container {
+    max-width: 100%;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #300221;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #e2d9f2;
+}
+
+.navbar-brand img {
+    width: 60px;
+}
+
+.login-button {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    text-decoration: none;
+    color: black;
+}
+
+.login-button:hover {
+    background-color: #e9ecef;
+}
+
+/* Header Styles */
+.header {
+    background-color: #e2d9f2;
+    color: #000;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+}
+
+.header h1 {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 3em;
+    color: #4f0670;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+.header h6 {
+    font-size: 1em;
+    color: #4a4a4a;
+    margin: 0;
+    padding: 0 10px;
+    max-width: 100%;
+    word-wrap: break-word;
+    font-style: italic;
+    font-family: 'Georgia', serif;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+    }
+    to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+    }
+}
+
+/* Search Bar Styles */
+.search-bar-container {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.search-form {
+    display: flex;
+    width: 100%;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: #e2d9f2;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+/* Category Cards Styles */
+.categories-container {
+    padding: 20px 0;
+}
+
+.category-card {
+    display: flex;
+    padding: 15px;
+    background-color: #e2d9f2;
+    border-radius: 5px;
+    color: #300221;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 1.8em;
+}
+
+.category-card:hover {
+    background-color: #e9ecef;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Carousel Styles */
+#adCarousel {
+    margin-bottom: 20px;
+}
+
+#adCarousel .carousel-item {
+    height: 400px;
+}
+
+#adCarousel .carousel-item img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: white;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    font-size: 0.9em;
+    position: relative;
+}
+
+/* Recipe Card Styles */
+.recipe-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.recipe-card .card-body {
+    padding: 15px;
+}
+
+.recipe-card .card-title {
+    margin-bottom: 0;
+    font-size: 1.1em;
+    text-align: center;
+    color: #300221;
+    font-family: 'Georgia', serif;
+}
+
+/* Recipe Page Styles */
+.recipe-container {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.recipe-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #300221;
+    font-family: 'Brush Script MT', cursive;
+}
+
+.recipe-container h2 {
+    font-size: 1.8em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #300221;
+}
+
+.recipe-container img {
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    height: auto;
+}
+
+.recipe-container ul,
+.recipe-container ol {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.recipe-container li {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.recipe-container p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #000;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .category-card {
+        font-size: 1.5em;
+    }
+
+    .recipe-container {
+        padding: 15px;
+    }
+
+    .recipe-container h1 {
+        font-size: 2em;
+    }
+
+    .recipe-container h2 {
+        font-size: 1.5em;
+    }
+
+    .recipe-container li,
+    .recipe-container p {
+        font-size: 1em;
+    }
+}
+
+/* Login and Signup Page Styles */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.login-header .company-logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.login-header .close-button {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.5em;
+}
+
+.login-body h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-body p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.login-body .form-label {
+    font-weight: bold;
+}
+
+.login-body .form-control {
+    margin-bottom: 15px;
+}
+
+.login-body .sign-in-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #dc3545; /* Red color */
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.login-body .social-profiles-text {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.login-body .social-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.login-body .twitter-button {
+    background-color: #1da1f2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
+
+.login-body .facebook-button {
+    background-color: #3b5998;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
+
+.login-body .forgot-signup-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-body .forgot-password,
+.login-body .sign-up {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* Styles for signup page */
+.signup-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Close button styling */
+.close-button {
+    color: #dc3545;
+    text-decoration: none;
+    font-size: 1.5em;
+    position: sticky;
+    top: 10px;
+    right: 10px;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #dc3545;
+    font-size: 0.8em;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    color: #ccc;
+    font-size: 0.8em;
+}
+
+input:focus {
+    outline: none;
+    border-bottom-color: #007bff;
+}
+
+/* Checkbox label styling */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    color: #dc3545;
+    font-size: 0.8em;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Continue button styling */
+.continue-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .category-card {
+        font-size: 1.5em;
+    }
+
+    .recipe-container {
+        padding: 15px;
+    }
+
+    .recipe-container h1 {
+        font-size: 2em;
+    }
+
+    .recipe-container h2 {
+        font-size: 1.5em;
+    }
+
+    .recipe-container li,
+    .recipe-container p {
+        font-size: 1em;
+    }
+}
+
+
+/* Contact Page Styles */
+.contact-form-container {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.contact-form-container .form-group {
+    margin-bottom: 15px;
+}
+
+.contact-form-container label {
+    font-weight: bold;
+}
+
+.contact-form-container .form-control {
+    border-radius: 4px;
+}
+
+.contact-form-container .btn-primary {
+    background-color: #300221;
+    border-color: #300221;
+}
+
+.contact-form-container .btn-primary:hover {
+    background-color: #4f0670;
+    border-color: #4f0670;
+}
+
+.contact-info-container {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.contact-info-container ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.contact-info-container li {
+    margin-bottom: 8px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .contact-form-container {
+        padding: 15px;
+    }
+
+    .contact-info-container {
+        padding: 15px;
+    }
+}
+
+/* Profile Page Styles */
+.profile-container {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-header h2 {
+    font-size: 1.5em;
+    margin: 0;
+    color: #300221;
+    text-align: left; /* Align header to the left */
+}
+
+.profile-header .close-btn {
+    color: #dc3545;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+.profile-info {
+    text-align: left; /* Align profile info to the left */
+    margin-bottom: 20px;
+}
+
+.profile-info .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px; /* Add some space to the right */
+    float: left; /* Float the image to the left */
+}
+
+.profile-info h3 {
+    font-size: 1.2em;
+    margin: 0;
+    color: #300221;
+}
+
+.profile-info p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.profile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 0; /* Remove left padding */
+}
+
+.profile-menu li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.profile-menu li:last-child {
+    border-bottom: none;
+}
+
+.profile-menu a {
+    display: flex;
+    align-items: center;
+    color: #300221;
+    text-decoration: none;
+}
+
+.profile-menu i {
+    color: #888;
+    margin-right: 15px; /* Add some space to the right of the icon */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 576px) {
+    .profile-container {
+        padding: 15px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.2em;
+    }
+
+    .profile-info .profile-pic {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-info h3 {
+        font-size: 1em;
+    }
+
+    .profile-info p {
+        font-size: 0.8em;
+    }
+
+    .profile-menu li {
+        padding: 8px 0;
+    }
+}
