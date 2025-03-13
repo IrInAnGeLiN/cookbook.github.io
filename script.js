@@ -68,7 +68,8 @@ function searchRecipes(event) {
     // Find recipes that match the search term
     const matchingRecipes = recipes.filter(recipe =>
         recipe.title.toLowerCase().includes(searchTerm) ||
-        recipe.content.toLowerCase().includes(searchTerm)
+        recipe.content.toLowerCase().includes(searchTerm) ||
+        recipe.country.toLowerCase().includes(searchTerm)
     );
 
     const searchResults = document.getElementById('searchResults');
