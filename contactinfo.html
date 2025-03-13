@@ -67,10 +67,10 @@
         <div class="contact-info-container">
             <p>You can also reach us at:</p>
             <ul>
-                <li><b>Email:</b> chef.kenji@cookhemistry.com</li>
-                <li><b>Phone:</b> (041) 123-45-67</li>
-                <li><b>Address:</b> Culinary Arts Studio, Gastronomy Street 45, Cookville, Finland</li>
-                <li><b>Instagram:</b> @cookhemistry </li>
+                <li><b>Email:</b> <a href="mailto:chef.kenji@cookhemistry.com">chef.kenji@cookhemistry.com</a></li>
+                <li><b>Phone:</b> <a href="tel:+0411234567">(041) 123-45-67</a></li>
+                <li><b>Address:</b> <a href="https://www.google.com/maps/search/?api=1&query=Culinary+Arts+Studio,+Gastronomy+Street+45,+Cookville,+Finland" target="_blank">Culinary Arts Studio, Gastronomy Street 45, Cookville, Finland</a></li>
+                <li><b>Instagram:</b> <a href="https://www.instagram.com/cookhemistry" target="_blank">@cookhemistry</a></li>
             </ul>
         </div>
 
@@ -82,5 +82,19 @@
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from actually submitting
+    
+                // Display an alert to confirm the request has been sent
+                alert('Your request has been sent!');
+    
+                // Clear the form
+                this.reset();
+            });
+        });
+    </script>
+        
 </body>
 </html>
