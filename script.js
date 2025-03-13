@@ -49,32 +49,40 @@ const recipes = [
     },
 ];
 
-function loadRecipes() {
-    const recipeList = document.getElementById('recipeList');
-    recipes.forEach((recipe, index) => {
-        const card = document.createElement('div');
-        card.className = 'col-md-4 col-sm-6 col-xs-12'; // Added responsive classes
-        card.innerHTML = `
-            <div class="card recipe-card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">${recipe.title}</h5>
-                </div>
-            </div>
-        `;
-        recipeList.appendChild(card);
+function searchRecipes(event) {
+    event.preventDefault(); // Prevent form submission
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+    // Find recipes that match the search term
+    const matchingRecipes = recipes.filter(recipe =>
+        recipe.title.toLowerCase().includes(searchTerm) ||
+        recipe.content.toLowerCase().includes(searchTerm)
+    );
+
+    const searchResults = document.getElementById('searchResults');
+    searchResults.innerHTML = ''; // Clear existing content
+
+    if (matchingRecipes.length === 0) {
+        searchResults.innerHTML = '<p>No recipes found matching that search term.</p>';
+        return;
+    }
+
+    const ul = document.createElement('ul');
+    matchingRecipes.forEach((recipe, index) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `${recipe.title.toLowerCase().replace(/ /g, '')}.html`;
+        a.textContent = recipe.title;
+        li.appendChild(a);
+        ul.appendChild(li);
     });
+
+    searchResults.appendChild(ul);
 }
 
-function showRecipe(index) {
-    document.getElementById('recipeList').style.display = 'none';
-    document.getElementById('recipeDetails').style.display = 'block';
-    document.getElementById('recipeTitle').innerText = recipes[index].title;
-    document.getElementById('recipeContent').innerText = recipes[index].content;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const searchForm = document.getElementById('searchForm');
+    searchForm.addEventListener('submit', searchRecipes);
+});
 
-function goBack() {
-    document.getElementById('recipeDetails').style.display = 'none';
-    document.getElementById('recipeList').style.display = 'flex';
-}
 
-window.onload = loadRecipes;
