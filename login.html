@@ -13,33 +13,34 @@
 <body>
     <div class="container">
         <div class="login-container">
-            <div class="login-header">
+            <div class="login-header">  <!-- Login Header -->
                 <div class="company-logo">Cookhemistry</div>
                 <a href="index.html" class="close-button">&times;</a>
             </div>
-            <div class="login-body">
+            <div class="login-body"> <!-- Login Body -->
                 <h2>Sign in</h2>
                 <p>Sign in using your social media account or email address</p>
-                <form id="loginForm">
-                    <div class="form-group">
+                <form id="loginForm"> <!-- Login Form -->
+                    <div class="form-group mb-3">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" placeholder="Enter your email">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" placeholder="Enter your password">
                     </div>
-                    <button type="submit" class="btn btn-danger sign-in-button">Sign In</button>
+                    <button type="submit" class="btn btn-danger sign-in-button w-100">Sign In</button>
                 </form>
-                <p class="social-profiles-text">Or continue with your social profile</p>
+                <p class="social-profiles-text">Or continue with your social profile</p> <!-- Social Profiles Login Buttons -->
                 <div class="social-buttons">
                     <button class="btn btn-primary twitter-button">Twitter</button>
                     <button class="btn btn-primary facebook-button">Facebook</button>
                 </div>
-                <div class="forgot-signup-links">
-                    <a href="#" class="forgot-password">Forgot Password</a>
-                    <a href="signup.html" class="sign-up">Sign Up</a>
+                <div class="forgot-signup-links mt-3">
+                    <a href="#" class="forgot-password">Forgot Password</a> <!-- Reset Password-->
+                    <a href="signup.html" class="sign-up">Sign Up</a> <!-- Sign Up Link-->
                 </div>
+                <div id="loginError" class="text-danger mt-2"></div> <!-- Error Message Display -->
             </div>
         </div>
     </div>
@@ -48,23 +49,27 @@
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
             // Simulate login
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorDiv = document.getElementById('loginError');
 
-            //Basic email format verification
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-        
-            if (password.length < 6) {
-                alert('Password must be at least 6 characters long.');
-                return;
-            }
 
-            // Redirect to profile page
-            window.location.href = 'myprofile.html';
+
+            // Basic validation
+      if (!email || !password) {
+        errorDiv.textContent = "Both fields are required.";
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        window.location.href = 'myprofile.html';
+      } else {
+        errorDiv.textContent = "Invalid email or password.";
+      }
         });
     </script>
 

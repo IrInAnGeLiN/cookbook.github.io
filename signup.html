@@ -15,25 +15,32 @@
         <div class="signup-container">
             <a href="index.html" class="close-button">&times;</a>
             <h2>Create Account</h2>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="new-email">Email</label>
                 <input type="email" id="new-email" placeholder="Enter your email">
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="new-password">Password</label>
                 <input type="password" id="new-password" placeholder="Enter your password">
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label class="checkbox-label">
-                    <input type="checkbox"> Stay signed in
+                    <input type="checkbox"> 
+                        <span>Stay signed in</span>
                 </label>
                 <label class="checkbox-label">
-                    <input type="checkbox" id="agree" name="agree">
-                    I agree to the <a href="#"> Terms of Services </a> and <a href="#"> Privacy Policy </a>.
+                    <input type="checkbox" id="agree" name="agree" class="me-2">
+                        <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</span>
                 </label>
             </div>
-            <button class="continue-button">Continue</button>
-            <p>Already have an account? <a href="login.html">Sign in</a></p>
+            <button class="btn btn-danger w-100 continue-button">Continue</button>
+
+            <div class="forgot-signup-links mt-3">
+                    <p>Already have an account?  <a href="login.html"> Sign in </a></p>
+            </div>
+
+            
+            <div id="signupError" class="text-danger mt-2"></div> <!-- Error Message Display -->
         </div>
     </div>
 
@@ -42,23 +49,53 @@
 
         continueButton.addEventListener('click', function() {
             // Simulate account creation
-            const newEmail = document.getElementById('new-email').value;
-            const newPassword = document.getElementById('new-password').value;
+            const newEmail = document.getElementById('new-email').value.trim();
+            const newPassword = document.getElementById('new-password').value.trim();
+            const agree = document.getElementById('agree').checked;
+            const errorDiv = document.getElementById('signupError');
 
-            //Veryfying parameters
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(newEmail)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            if (newPassword.length < 6) {
-                alert('Password must be at least 6 characters long.');
-                return;
-            }
+            errorDiv.textContent = "";
 
-            // Redirect to profile page after signing up
-            window.location.href = 'profile.html';
-        });
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(newEmail)) {
+        errorDiv.textContent = 'Please enter a valid email address.';
+        return;
+      }
+
+      // Validate password
+      if (newPassword.length < 6) {
+        errorDiv.textContent = 'Password must be at least 6 characters long.';
+        return;
+      }
+
+      // Validate agreement
+      if (!agree) {
+        errorDiv.textContent = 'You must agree to the Terms and Privacy Policy.';
+        return;
+      }
+
+      // Load existing users
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+
+      // Prevent duplicate email
+      if (users.some(u => u.email === newEmail)) {
+      errorDiv.innerHTML = `This email is already registered. 
+                            <a href="login.html" class="btn btn-link p-0 m-0 align-baseline">Click here to log in.</a> `;
+      return;
+      }
+
+      // Create new user
+      const newUser = { email: newEmail, password: newPassword };
+      users.push(newUser);
+
+      // Save to localStorage
+      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('currentUser', JSON.stringify(newUser));
+
+      // Redirect to profile page
+      window.location.href = 'myprofile.html';
+    });
     </script>
 
     <!-- Bootstrap JS and dependencies -->
