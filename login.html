@@ -48,14 +48,12 @@
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            // Simulate login
+            
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value.trim();
             const errorDiv = document.getElementById('loginError');
 
-
-
-            // Basic validation
+            // Validation
       if (!email || !password) {
         errorDiv.textContent = "Both fields are required.";
         return;

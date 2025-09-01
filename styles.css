@@ -43,6 +43,22 @@ a:hover {
     background-color: #e9ecef;
 }
 
+.navbar .nav-link.auth-button {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .nav-link.auth-button:hover {
+    background-color: #e9ecef;
+}
+
+
 /* Header Styles */
 .header {
     background-color: #e2d9f2;
