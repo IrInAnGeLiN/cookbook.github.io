@@ -163,17 +163,24 @@ a:hover {
 /* Carousel Styles */
 #adCarousel {
     margin-bottom: 20px;
+    margin: 0 auto 20px; 
+    max-width: 800px;
+    max-height: 800px;
 }
 
 #adCarousel .carousel-item {
-    height: 400px;
+    max-height: 400px;
 }
 
 #adCarousel .carousel-item img {
     object-fit: cover;
-    height: 100%;
+    height: auto;
     width: 100%;
+    max-height: 600px;
+    display: block;
 }
+
+
 
 /* Footer Styles */
 .footer {

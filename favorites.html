@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="./img/logo.jpg" class="img-fluid" alt="logo image" width="60">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav me-auto">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Recipes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="appetizers.html">Appetizers</a></li>
+                            <li><a class="dropdown-item" href="maincourses.html">Main Courses</a></li>
+                            <li><a class="dropdown-item" href="desserts.html">Desserts</a></li>
+                            <li><a class="dropdown-item" href="drinks.html">Drinks</a></li>
+                        </ul>
+                    <a class="nav-link" href="contactinfo.html">Contact Us</a>
+                </div>
+                <a href="login.html" class="nav-link login-button">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Favorites Content -->
+        <div class="favorites-container my-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="mb-0"><i class="fas fa-heart text-danger"></i> My Favorite Recipes</h2>
+                <a href="myprofile.html" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+            </div>
+            <div id="favorites-list" class="row gy-4">
+                <!-- Favorite recipes will be injected here -->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Copyright &copy; Cookhemistry 2025</p>
+        </div>
+    </div>
+    
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Copyright &copy; Cookhemistry 2025</p>
+    </div>
+</div>
+
+<script>
+      document.addEventListener("DOMContentLoaded", function() {     
+
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    // Redirect to login if not logged in
+    if (!currentUser) {
+        alert("Please log in to see your favorites.");
+        window.location.href = "login.html";
+        return; // Stop further execution
+    }
+
+        // Display favorites
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const listDiv = document.getElementById('favorites-list');
+
+        if (favorites.length === 0) {
+            listDiv.innerHTML = `<div class="col-12 text-center text-muted">No favorites saved yet.</div>`;
+        } else {
+            listDiv.innerHTML = favorites.map((recipe, index) => `
+                <div class="col-md-4 col-12">
+                    <div class="card shadow-sm h-100">
+                        <img src="${recipe.image}" class="card-img-top" alt="${recipe.title}" style="max-height:200px;object-fit:cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">${recipe.title}</h5>
+                            <a href="${recipe.url}" class="btn btn-primary mb-2" target="_blank"><i class="fas fa-utensils"></i> View Recipe</a>
+                            <button class="btn btn-danger btn-remove-fav" data-index="${index}"><i class="fas fa-trash"></i> Remove</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Remove favorite
+        listDiv.addEventListener('click', function(e) {
+          if (e.target.classList.contains('btn-remove-fav') || e.target.closest('.btn-remove-fav')) {
+            const btn = e.target.closest('.btn-remove-fav');
+            const idx = Number(btn.getAttribute('data-index'));
+            favorites.splice(idx,1);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            window.location.reload();
+          }
+        });
+      });
+    </script>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script> 
+</body>
+</html>
+ 

@@ -61,6 +61,14 @@ const recipes = [
     },
 ];
 
+document.addEventListener('DOMContentLoaded', () => {
+    const searchForm = document.getElementById('searchForm');
+    if (searchForm) {
+        searchForm.addEventListener('submit', searchRecipes);
+    }
+});
+
+
 function searchRecipes(event) {
     event.preventDefault(); // Prevent form submission
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
@@ -95,7 +103,94 @@ function searchRecipes(event) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const searchForm = document.getElementById('searchForm');
-    searchForm.addEventListener('submit', searchRecipes);
+    if (searchForm) {
+        searchForm.addEventListener('submit', searchRecipes);
+    }
+});
+
+
+// Save recipe to favorites
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle save-to-favorites button(s)
+    const saveButtons = document.querySelectorAll('.save-receipt');
+    saveButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+
+            // Check if user is logged in
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                // Not logged in: redirect to login page
+                alert('Please log in to save recipes.');
+                window.location.href = 'login.html';
+                return; // Stop further execution
+            }
+
+            // User is logged in: proceed to save
+            const recipe = {
+                title: btn.getAttribute('data-title'),
+                image: btn.getAttribute('data-image'),
+                url: btn.getAttribute('data-url') || window.location.href
+            };
+
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const exists = favorites.some(fav => fav.title === recipe.title && fav.url === recipe.url);
+            if (!exists) {
+                favorites.push(recipe);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                alert('Recipe saved to favorites!');
+            } else {
+                alert('This recipe is already in your favorites.');
+            }
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const myCookbookBtn = document.querySelector('.my-cookbook');
+    if (myCookbookBtn) {
+        myCookbookBtn.addEventListener('click', () => {
+            window.location.href = 'favorites.html'; // Redirects to favorites page
+        });
+    }
+});
+
+// Handle login/logout and profile link
+document.addEventListener('DOMContentLoaded', () => {
+    const loginButton = document.querySelector('.login-button');
+    if (!loginButton) return; // If no login button on page, exit early
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (currentUser) {
+        // User is logged in, show "My Profile" and a logout button
+        loginButton.textContent = 'My Profile';
+        loginButton.href = 'myprofile.html';
+        loginButton.classList.add('auth-button');
+
+        // Create logout button if not already present
+        if (!document.querySelector('.logout-button')) {
+            const logoutButton = document.createElement('a');
+            logoutButton.textContent = 'Logout';
+            logoutButton.href = '#';
+            logoutButton.classList.add('nav-link', 'auth-button', 'ms-2', 'logout-button');
+
+            logoutButton.addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                window.location.reload();
+            });
+
+            loginButton.parentNode.appendChild(logoutButton);
+        }
+    } else {
+        // No user logged in: show login button
+        loginButton.textContent = 'Login';
+        loginButton.href = 'login.html';
+        loginButton.classList.add('auth-button');
+
+        // Remove logout button if exists
+        const existingLogout = document.querySelector('.logout-button');
+        if (existingLogout) existingLogout.remove();
+    }
 });
 
 

@@ -112,39 +112,7 @@
     <!-- Footer -->
     <div class="footer">
         <p>Copyright &copy Cookhemistry 2025</p>
-    </div>
-
-
-    <script>
-    // Get the login/profile link element
-    const loginButton = document.querySelector('.login-button');
-
-    // Check if a user is logged in
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-    if (currentUser) {
-        // User is logged in: show profile and logout options
-        loginButton.textContent = 'My Profile';
-        loginButton.href = 'myprofile.html';
-        loginButton.classList.add('auth-button');
-
-        // Logout button 
-        const logoutButton = document.createElement('a');
-        logoutButton.textContent = 'Logout';
-        logoutButton.href = '#';
-        logoutButton.classList.add('nav-link', 'auth-button', 'ms-2');
-
-        logoutButton.addEventListener('click', () => {
-            localStorage.removeItem('currentUser'); // Log out
-            window.location.reload(); // Refresh page to show login again
-        });
-
-        loginButton.parentNode.appendChild(logoutButton);
-    } 
-    else {
-    loginButton.classList.add('auth-button'); // Apply style for login button
-    }
-    </script>
+    </div>   
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
